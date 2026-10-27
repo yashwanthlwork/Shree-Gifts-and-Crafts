@@ -145,47 +145,49 @@ export default function App() {
             </a>
           </div>
         </div>
-
-        {/* Mobile Swipeable Categories Bar */}
-        <div className="px-4 py-2 border-t border-[#F0E6D8] overflow-x-auto no-scrollbar flex gap-2">
-          {categories.map((cat) => {
-            const Icon = cat.icon;
-            const isSelected = activeCategory === cat.value;
-            return (
-              <button
-                key={cat.value}
-                onClick={() => setActiveCategory(cat.value)}
-                className={`flex items-center gap-1.5 text-xs px-3.5 py-1.5 rounded-full font-medium whitespace-nowrap transition active:scale-95 cursor-pointer shrink-0 ${
-                  isSelected
-                    ? 'bg-[#5B121E] text-white shadow-xs'
-                    : 'bg-white text-[#574B40] border border-[#E3D7C9]'
-                }`}
-              >
-                <Icon size={12} className={isSelected ? 'text-[#D4AF37]' : 'text-[#87786B]'} />
-                <span>{cat.label}</span>
-              </button>
-            );
-          })}
-        </div>
       </header>
 
-      {/* Hero Intro */}
-      <section className="bg-linear-to-b from-[#F6EFE6] to-[#FBF9F5] pt-6 pb-4 px-4 text-center">
-        <div className="max-w-xl mx-auto">
-          <span className="text-[10px] sm:text-xs font-semibold text-[#5B121E] uppercase tracking-widest bg-[#EFE3D3] px-3 py-0.5 rounded-full border border-[#E3D3C0] inline-block mb-2">
+      {/* Hero Intro with Centered Category Bar */}
+      <section className="bg-gradient-to-b from-[#F6EFE6] to-[#FBF9F5] pt-8 sm:pt-10 pb-6 px-4 text-center border-b border-[#EDE4D8]">
+        <div className="max-w-2xl mx-auto flex flex-col items-center">
+          <span className="text-[10px] sm:text-xs font-semibold text-[#5B121E] uppercase tracking-widest bg-[#EFE3D3] px-3 py-1 rounded-full border border-[#E3D3C0] inline-block mb-3">
             Curated Traditional Gifting
           </span>
-          <h2 className="text-xl sm:text-3xl font-serif font-bold text-[#231A14] leading-snug">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#231A14] leading-tight tracking-tight">
             Thoughtful Gifts for Weddings & Festive Celebrations
           </h2>
-          <p className="text-xs sm:text-sm text-[#6B5E53] mt-2 leading-relaxed">
+          <p className="text-xs sm:text-sm text-[#6B5E53] mt-2.5 max-w-xl leading-relaxed">
             Handcrafted trays, Pichwai art & custom celebration hampers crafted in Bengaluru. Tap any item to order directly.
           </p>
+
+          {/* Centered Category Pills Bar (Horizontal Scroll on Mobile) */}
+          <div className="mt-6 w-full flex justify-center">
+            <div className="flex gap-2 sm:gap-2.5 overflow-x-auto no-scrollbar max-w-full px-2 py-1">
+              {categories.map((cat) => {
+                const Icon = cat.icon;
+                const isSelected = activeCategory === cat.value;
+                return (
+                  <button
+                    key={cat.value}
+                    onClick={() => setActiveCategory(cat.value)}
+                    className={`flex items-center gap-1.5 text-xs sm:text-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-full font-medium transition active:scale-95 cursor-pointer whitespace-nowrap shrink-0 shadow-xs ${
+                      isSelected
+                        ? 'bg-[#5B121E] text-white shadow-sm ring-2 ring-[#5B121E]/20'
+                        : 'bg-white text-[#574B40] border border-[#E3D7C9] hover:bg-[#F3ECE1]'
+                    }`}
+                  >
+                    <Icon size={13} className={isSelected ? 'text-[#D4AF37]' : 'text-[#87786B]'} />
+                    <span>{cat.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Product Catalog Grid */}
-      <main className="max-w-6xl mx-auto px-4 py-4">
+      <main className="max-w-6xl mx-auto px-4 py-8">
         {loading ? (
           <div className="flex flex-col items-center justify-center py-20 text-[#8C7D73] gap-2.5">
             <Loader2 className="animate-spin text-[#5B121E]" size={32} />
@@ -196,11 +198,19 @@ export default function App() {
             No items currently found in this category.
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <div
+            className={`grid gap-5 sm:gap-6 ${
+              filteredItems.length === 1
+                ? 'max-w-sm mx-auto'
+                : filteredItems.length === 2
+                ? 'max-w-3xl mx-auto grid-cols-1 sm:grid-cols-2'
+                : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
+            }`}
+          >
             {filteredItems.map((item, index) => (
               <div
                 key={index}
-                className="group bg-white rounded-2xl border border-[#E9DFD2] overflow-hidden shadow-xs flex flex-col justify-between"
+                className="group bg-white rounded-2xl border border-[#E9DFD2] overflow-hidden shadow-xs hover:shadow-lg hover:border-[#D5C4B0] transition duration-300 flex flex-col justify-between"
               >
                 <div>
                   {/* Image Frame */}
@@ -209,7 +219,7 @@ export default function App() {
                       <img
                         src={item.image || 'https://placehold.co/600x600?text=No+Photo'}
                         alt={item.name}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover group-hover:scale-105 transition duration-500 ease-out"
                         loading="lazy"
                       />
                       <span className="absolute top-2.5 left-2.5 bg-[#FAF7F2]/95 backdrop-blur-xs text-[#5B121E] text-[9px] sm:text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 rounded shadow-xs border border-[#E4D7C8]">
@@ -221,7 +231,7 @@ export default function App() {
                   </div>
 
                   {/* Card Details */}
-                  <div className="p-4">
+                  <div className="p-4 sm:p-5 flex flex-col">
                     <div className="flex items-baseline gap-1 text-[#5B121E] mb-1">
                       <span className="text-xs font-semibold">₹</span>
                       <span className="text-xl sm:text-2xl font-serif font-bold tracking-tight">
@@ -229,23 +239,23 @@ export default function App() {
                       </span>
                     </div>
 
-                    <h3 className="font-serif font-semibold text-[#201813] text-base leading-snug line-clamp-2">
+                    <h3 className="font-serif font-semibold text-[#201813] text-base leading-snug min-h-[2.5rem] line-clamp-2">
                       {item.name}
                     </h3>
 
-                    {item.note && item.note.toLowerCase() !== 'nothing' && (
-                      <p className="text-xs text-[#73665A] mt-1.5 leading-relaxed line-clamp-3">
-                        {item.note}
-                      </p>
-                    )}
+                    <p className="text-xs text-[#73665A] mt-1.5 leading-relaxed min-h-[3rem] line-clamp-3">
+                      {item.note && item.note.toLowerCase() !== 'nothing'
+                        ? item.note
+                        : 'Handcrafted curation. Contact us for custom packaging and bulk inquiries.'}
+                    </p>
                   </div>
                 </div>
 
                 {/* Direct Action Button */}
-                <div className="p-4 pt-0">
+                <div className="p-4 sm:p-5 pt-0">
                   <button
                     onClick={() => handleOrder(item)}
-                    className="w-full bg-[#177245] hover:bg-[#125B37] text-white font-medium py-3 px-4 rounded-xl flex items-center justify-center gap-2 text-xs sm:text-sm active:scale-[0.98] transition shadow-xs cursor-pointer"
+                    className="w-full bg-[#177245] hover:bg-[#125B37] text-white font-medium py-2.5 sm:py-3 px-4 rounded-xl flex items-center justify-center gap-2 text-xs sm:text-sm active:scale-[0.98] transition shadow-xs cursor-pointer"
                   >
                     <MessageCircle size={16} />
                     <span>Order on WhatsApp</span>
@@ -258,52 +268,52 @@ export default function App() {
       </main>
 
       {/* Trust Highlights */}
-      <section className="border-t border-[#EDE4D8] bg-[#F7F2E9] py-8 px-4 mt-6">
-        <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 text-center sm:text-left">
-          <div className="flex items-center gap-3 justify-center sm:justify-start">
-            <div className="w-10 h-10 rounded-xl bg-white border border-[#E5DACD] flex items-center justify-center text-[#5B121E] shrink-0">
+      <section className="border-t border-[#EDE4D8] bg-[#F7F2E9] py-10 px-4 mt-6">
+        <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6 text-center sm:text-left">
+          <div className="flex items-center gap-3.5 justify-center sm:justify-start">
+            <div className="w-11 h-11 rounded-xl bg-white border border-[#E5DACD] flex items-center justify-center text-[#5B121E] shrink-0 shadow-xs">
               <Sparkles size={18} />
             </div>
             <div>
               <h4 className="text-xs font-bold text-[#2A201A] uppercase tracking-wide">
                 Handcrafted Artistry
               </h4>
-              <p className="text-[11px] text-[#73665A]">Direct from Bengaluru artisans</p>
+              <p className="text-[11px] text-[#73665A] mt-0.5">Direct from Bengaluru artisans</p>
             </div>
           </div>
 
-          <div className="flex items-center gap-3 justify-center sm:justify-start">
-            <div className="w-10 h-10 rounded-xl bg-white border border-[#E5DACD] flex items-center justify-center text-[#5B121E] shrink-0">
+          <div className="flex items-center gap-3.5 justify-center sm:justify-start">
+            <div className="w-11 h-11 rounded-xl bg-white border border-[#E5DACD] flex items-center justify-center text-[#5B121E] shrink-0 shadow-xs">
               <ShieldCheck size={18} />
             </div>
             <div>
               <h4 className="text-xs font-bold text-[#2A201A] uppercase tracking-wide">
                 Protective Packaging
               </h4>
-              <p className="text-[11px] text-[#73665A]">Ready-to-gift celebratory presentation</p>
+              <p className="text-[11px] text-[#73665A] mt-0.5">Ready-to-gift celebratory presentation</p>
             </div>
           </div>
 
-          <div className="flex items-center gap-3 justify-center sm:justify-start">
-            <div className="w-10 h-10 rounded-xl bg-white border border-[#E5DACD] flex items-center justify-center text-[#5B121E] shrink-0">
+          <div className="flex items-center gap-3.5 justify-center sm:justify-start">
+            <div className="w-11 h-11 rounded-xl bg-white border border-[#E5DACD] flex items-center justify-center text-[#5B121E] shrink-0 shadow-xs">
               <PhoneCall size={18} />
             </div>
             <div>
               <h4 className="text-xs font-bold text-[#2A201A] uppercase tracking-wide">
                 Custom & Bulk Orders
               </h4>
-              <p className="text-[11px] text-[#73665A]">Flexible designs to match your budget</p>
+              <p className="text-[11px] text-[#73665A] mt-0.5">Flexible designs to match your budget</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="text-center text-xs text-[#85766A] py-6 border-t border-[#EDE4D8] bg-[#EFE8DD] flex flex-col items-center gap-2.5">
+      <footer className="text-center text-xs text-[#85766A] py-8 border-t border-[#EDE4D8] bg-[#EFE8DD] flex flex-col items-center gap-2.5">
         <img
           src="/logo.png"
           alt="Shree Gifts"
-          className="w-9 h-9 rounded-full object-cover border border-[#D5C2A5] opacity-90"
+          className="w-10 h-10 rounded-full object-cover border border-[#D5C2A5] opacity-90 shadow-2xs"
         />
         <div>
           <p className="font-serif font-bold text-[#2A201A] text-sm">
@@ -317,7 +327,7 @@ export default function App() {
           href={SHOP_DETAILS.instagramUrl}
           target="_blank"
           rel="noreferrer"
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#5B121E] hover:underline"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#5B121E] hover:underline mt-1"
         >
           <InstagramIcon size={14} />
           <span>Follow @shree_gifts_and_crafts on Instagram</span>
