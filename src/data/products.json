@@ -1,0 +1,74 @@
+{
+  "shop": {
+    "name": "Shree Gifts and Crafts",
+    "tagline": "Handcrafted Curations & Festive Hampers",
+    "whatsappNumber": "919876543210",
+    "location": "Bengaluru, India"
+  },
+  "combos": [
+    {
+      "id": "combo-1",
+      "name": "Royal Brass Diya & Dry Fruit Hamper",
+      "category": "Festive",
+      "price": 899,
+      "originalPrice": 1199,
+      "badge": "Bestseller",
+      "image": "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80",
+      "note": "Hand-hammered brass diyas with premium California almonds & roasted cashews in a reusable velvet tray.",
+      "items": [
+        "2x Carved Pure Brass Diyas",
+        "150g California Almonds",
+        "150g Roasted Salted Cashews",
+        "Keepsake Velvet Gift Box"
+      ]
+    },
+    {
+      "id": "combo-2",
+      "name": "Artisan Ceramic Mug & Coffee Duo",
+      "category": "Under ₹500",
+      "price": 499,
+      "originalPrice": 650,
+      "badge": "Under ₹500",
+      "image": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80",
+      "note": "Studio pottery glazed mug paired with artisan filter coffee drip bags.",
+      "items": [
+        "1x Handcrafted Glazed Mug (350ml)",
+        "3x Specialty Drip Coffee Bags",
+        "Handmade Greeting Card"
+      ]
+    },
+    {
+      "id": "combo-3",
+      "name": "Handmade Soy Wax Scented Candle Trio",
+      "category": "Handcrafted",
+      "price": 599,
+      "originalPrice": 750,
+      "badge": "Organic",
+      "image": "https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=800&q=80",
+      "note": "Smokeless organic soy wax candles infused with jasmine, sandalwood, and oudh oils.",
+      "items": [
+        "1x Jasmine Bloom (80g)",
+        "1x Mysore Sandal (80g)",
+        "1x Royal Oudh (80g)",
+        "Eco-friendly Kraft Box"
+      ]
+    },
+    {
+      "id": "combo-4",
+      "name": "Maharaja Teak Wood Dry Fruit Chest",
+      "category": "Luxury",
+      "price": 1850,
+      "originalPrice": 2200,
+      "badge": "Signature Box",
+      "image": "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=800&q=80",
+      "note": "Carved vintage wooden keepsake box loaded with 4 luxury varieties of dry fruits and raw forest honey.",
+      "items": [
+        "Carved Teakwood Box with Brass Latch",
+        "200g Jumbo Cashews",
+        "200g Afghan Raisins",
+        "200g Pistachios",
+        "100g Wild Forest Raw Honey"
+      ]
+    }
+  ]
+}
