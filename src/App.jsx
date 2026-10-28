@@ -93,8 +93,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FBF9F5] text-[#2C241E] font-sans antialiased pb-20 sm:pb-12">
-      {/* Top Banner Ribbon */}
+    <div className="min-h-screen bg-[#FBF9F5] text-[#2C241E] font-sans antialiased flex flex-col justify-between">      {/* Top Banner Ribbon */}
       <div className="bg-[#5B121E] text-[#F7E7DC] text-[11px] sm:text-xs py-1.5 px-3 text-center font-medium tracking-wide flex items-center justify-center gap-1.5">
         <Sparkles size={12} className="text-[#D4AF37] shrink-0" />
         <span className="truncate">Handcrafted in Bengaluru • Bulk Return Gifts Available</span>
@@ -309,30 +308,30 @@ export default function App() {
       </section>
 
       {/* Footer */}
-      <footer className="text-center text-xs text-[#85766A] py-8 border-t border-[#EDE4D8] bg-[#EFE8DD] flex flex-col items-center gap-2.5">
-        <img
-          src="/logo.png"
-          alt="Shree Gifts"
-          className="w-10 h-10 rounded-full object-cover border border-[#D5C2A5] opacity-90 shadow-2xs"
-        />
-        <div>
-          <p className="font-serif font-bold text-[#2A201A] text-sm">
-            {SHOP_DETAILS.name}
-          </p>
-          <p className="text-[11px] mt-0.5">
-            {SHOP_DETAILS.location} • Handcrafted Gifting Catalog
-          </p>
-        </div>
-        <a
-          href={SHOP_DETAILS.instagramUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#5B121E] hover:underline mt-1"
-        >
-          <InstagramIcon size={14} />
-          <span>Follow @shree_gifts_and_crafts on Instagram</span>
-        </a>
-      </footer>
+    <footer className="text-center text-xs text-[#85766A] pt-8 pb-24 sm:pb-8 border-t border-[#EDE4D8] bg-[#EFE8DD] flex flex-col items-center gap-2.5 mt-auto">
+      <img
+        src="/logo.png?v=2"
+        alt="Shree Gifts"
+        className="w-10 h-10 rounded-full object-cover border border-[#D5C2A5] opacity-90 shadow-2xs"
+      />
+      <div>
+        <p className="font-serif font-bold text-[#2A201A] text-sm">
+          {SHOP_DETAILS.name}
+        </p>
+        <p className="text-[11px] mt-0.5">
+          {SHOP_DETAILS.location} • Handcrafted Gifting Catalog
+        </p>
+      </div>
+      <a
+        href={SHOP_DETAILS.instagramUrl}
+        target="_blank"
+        rel="noreferrer"
+        className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#5B121E] hover:underline mt-1"
+      >
+        <InstagramIcon size={14} />
+        <span>Follow @shree_gifts_and_crafts on Instagram</span>
+      </a>
+    </footer>
 
       {/* Mobile Floating Quick WhatsApp Button */}
       <div className="fixed bottom-4 right-4 z-40 sm:hidden">
